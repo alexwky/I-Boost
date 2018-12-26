@@ -36,7 +36,7 @@ IBoost(X, Y, data.type, method = "permute", iter.max = 2000,
 A list of two elements, \code{beta} and \code{iter.no}. \code{beta} is a vector of estimated regression parameters. \code{iter.no} is the number of iterations used in the estimation.
 }
 \description{
-Takes in data matrices and perform I-Boost
+Takes in data matrices and performs I-Boost-CV or I-Boost-Permutation
 }
 \seealso{
 \code{glmnet}, \code{survival}.

@@ -11,7 +11,7 @@ get.permute.lambda <- function(X, Y, alpha=1, permN=100, standardize=T, family="
 
 #' Regression Parameter Estimation Using I-Boost
 #'
-#' Takes in data matrices and perform I-Boost-CV or I-Boost-Permutation
+#' Takes in data matrices and performs I-Boost-CV or I-Boost-Permutation
 #' @param X The matrix of all predictors. Each row represents a subject (with total of n rows) and each column represents a feature (with total of d columns). Each column of X should be standardized.
 #' @param Y The survival time, represented by a \code{Surv} object.
 #' @param data.type The list of indices representing the types of the predictors. Each element of the list is a vector of integers between 1 and d that corresponds to the column numbers of a type of predictors in X. The indices should be non-overlapping.
