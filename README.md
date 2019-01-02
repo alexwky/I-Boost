@@ -12,7 +12,7 @@ install.packages("devtools")
 library(devtools)
 install_github("alexwky/IBoost")
 ```
-\code{IBoost()} is the main function that implements the I-Boost procedure. Details about the function can be found in the user manual:
+**IBoost()** is the main function that implements the I-Boost procedure. Details about the function can be found in the user manual:
 ```
 ?IBoost
 ```
