@@ -2,7 +2,7 @@ Package: IBoost
 Type: Package
 Title: An Integrative Boosting Approach for Predicting Survival Time With Multiple Genomics Platforms
 Version: 0.1.0
-Author: Kin Yau Wong <kin-yau.wong@polyu.edu.hk>
+Author: Kin Yau Wong, Cheng Fan, Maki Tanioka, Joel S. Parker, Andrew B. Nobel, Donglin Zeng, Danyu Lin, Charles M. Perou
 Maintainer: Kin Yau Wong <kin-yau.wong@polyu.edu.hk>
 Description: IBoost is a statistical boosting method that integrates multiple types of high-dimensional genomics data with clinical data for predicting survival time.
 License: GPL (>=2)

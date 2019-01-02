@@ -8,15 +8,16 @@ cv_glmnet(X, Y, foldid, alpha = 1, error = "cox", offset = rep(0,
   nrow(X)), setlambda = F, lambda = 0, ...)
 }
 \arguments{
-\item{X}{The matrix of all predictors. Each row represents a subject (with total of n rows) and each column represents a feature (with total of d columns). Each column of X should be standardized.}
+\item{X}{The matrix of all predictors. Each row represents a subject 
+and each column represents a feature.}
 
-\item{Y}{The survival time, represented by a Surv object.}
+\item{Y}{The survival time, represented by a \code{Surv} object.}
 
 \item{foldid}{A vector of integers between 1 and \code{k} indicating  what fold each subject is in, where \code{k} is the number of folds.}
 
-\item{alpha}{The second parameter in elastic net (\eqn{\alpha}).}
+\item{alpha}{The second tuning parameter in elastic net (\eqn{\alpha}).}
 
-\item{error}{The choice of cross-validation error. \code{error="cox"} for deviance under the Cox model and \code{error="Cindex"} for the C-index.}
+\item{error}{The choice of cross-validation error. Set \code{error="cox"} for deviance under the Cox model and \code{error="Cindex"} for the C-index.}
 
 \item{offset}{A vector of offset terms.}
 
@@ -26,8 +27,20 @@ cv_glmnet(X, Y, foldid, alpha = 1, error = "cox", offset = rep(0,
 
 \item{...}{Other arguments that can be passed to \code{glmnet}.}
 }
+\value{
+A list containing results of the cross-validation fit:
+   \item{cvm}{a vector of mean cross-validation errors over lambda values.}
+   \item{lambda}{a vector of tuning parameter values.}
+   \item{df}{a vector of mean numbers of variables selected over lambda values.}
+   \item{min.cvm}{minimum value of mean cross-validation error.}
+   \item{lambda.min}{the lambda value corresponding to the minimum (mean) cross-validation error.}
+   \item{min.pos}{the position of the minimum (mean) cross-validation error in \code{cvm}.}
+   \item{all.beta}{a list of estimated regression parameters over the folds.}
+   \item{all.cvm}{a list of vectors of cross-validation errors over the folds.}
+}
 \description{
-Performs k-fold cross-validation for glmnet in the same way as \code{cv.glmnet} in the package \code{glmnet} and outputs the cross-validation error for each fold.
+Performs k-fold cross-validation for the first tuning parameter
+   of elastic net (lambda) in the same way as \code{cv.glmnet} in the package \code{glmnet} and outputs the selected lambda and the cross-validation errors for individual folds.
 }
 \seealso{
 \code{glmnet}

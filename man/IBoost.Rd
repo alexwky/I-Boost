@@ -2,27 +2,26 @@
 % Please edit documentation in R/IBoost.R
 \name{IBoost}
 \alias{IBoost}
-\title{Regression Parameter Estimation Using I-Boost}
+\title{Regression parameter estimation using I-Boost}
 \usage{
 IBoost(X, Y, data.type, method = "permute", iter.max = 2000,
-  v = ifelse(method == "permute", 0.01, 0.01), m.stop = 5,
-  alpha.series = c(0.05, seq(0.1, 1, by = 0.1)), n.fold = 5,
-  permN = 100, seed = 12345678)
+  v = 0.01, m.stop = 5, alpha.series = c(0.05, seq(0.1, 1, by =
+  0.1)), n.fold = 5, permN = 100, seed = 12345678)
 }
 \arguments{
-\item{X}{The matrix of all predictors. Each row represents a subject (with total of n rows) and each column represents a feature (with total of d columns). Each column of X should be standardized.}
+\item{X}{The matrix of all predictors. Each row represents a subject and each column represents a feature (with total of \code{d} columns). Each column of \code{X} should be standardized.}
 
 \item{Y}{The survival time, represented by a \code{Surv} object.}
 
-\item{data.type}{The list of indices representing the types of the predictors. Each element of the list is a vector of integers between 1 and d that corresponds to the column numbers of a type of predictors in X. The indices should be non-overlapping.}
+\item{data.type}{The list of indices representing the types of the predictors. Each element of the list is a vector of integers between 1 and \code{d} that corresponds to the column numbers of a type of predictors in \code{X}. The indices should be non-overlapping.}
 
-\item{method}{The version of I-Boost to be used; “permute” for I-Boost-Permutation, and “CV” for I-Boost-CV.}
+\item{method}{The version of I-Boost to be used; set \code{method=“permute”} for I-Boost-Permutation and \code{method=“CV”} for I-Boost-CV.}
 
 \item{iter.max}{The maximum number of iterations.}
 
 \item{v}{The penalty factor for the current estimate at each iteration.}
 
-\item{m.stop}{The stopping criterion; if the parameters are not updated consecutively for m.stop iterations, then the algorithm terminates.}
+\item{m.stop}{The stopping criterion; if the parameters are not updated consecutively for \code{m.stop} iterations, then the algorithm terminates.}
 
 \item{alpha.series}{The set of values to be considered for the second tuning parameter in elastic net (\eqn{\alpha}) in cross-validation; only applicable when \code{method=”CV”}.}
 
@@ -36,7 +35,7 @@ IBoost(X, Y, data.type, method = "permute", iter.max = 2000,
 A list of two elements, \code{beta} and \code{iter.no}. \code{beta} is a vector of estimated regression parameters. \code{iter.no} is the number of iterations used in the estimation.
 }
 \description{
-Takes in data matrices and performs I-Boost-CV or I-Boost-Permutation
+Takes in data matrices and performs I-Boost-CV or I-Boost-Permutation.
 }
 \seealso{
 \code{glmnet}, \code{survival}.

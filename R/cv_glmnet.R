@@ -103,12 +103,14 @@ rescale.en <- function(select, naive=naive, alpha=alpha, lambda=lambda, all, err
 
 #' Tuning parameter selection by cross-validation
 #'
-#' Performs k-fold cross-validation for glmnet in the same way as \code{cv.glmnet} in the package \code{glmnet} and outputs the cross-validation error for each fold.
-#' @param X The matrix of all predictors. Each row represents a subject (with total of n rows) and each column represents a feature (with total of d columns). Each column of X should be standardized.
-#' @param Y The survival time, represented by a Surv object.
+#' Performs k-fold cross-validation for the first tuning parameter
+#'    of elastic net (lambda) in the same way as \code{cv.glmnet} in the package \code{glmnet} and outputs the selected lambda and the cross-validation errors for individual folds.
+#' @param X The matrix of all predictors. Each row represents a subject 
+#'    and each column represents a feature.
+#' @param Y The survival time, represented by a \code{Surv} object.
 #' @param foldid A vector of integers between 1 and \code{k} indicating  what fold each subject is in, where \code{k} is the number of folds.
-#' @param alpha The second parameter in elastic net (\eqn{\alpha}).
-#' @param error The choice of cross-validation error. \code{error="cox"} for deviance under the Cox model and \code{error="Cindex"} for the C-index.
+#' @param alpha The second tuning parameter in elastic net (\eqn{\alpha}).
+#' @param error The choice of cross-validation error. Set \code{error="cox"} for deviance under the Cox model and \code{error="Cindex"} for the C-index.
 #' @param offset A vector of offset terms.
 #' @param setlambda If \code{setlambda=TRUE}, then a user-supplied vector of tuning parameters (\eqn{\lambda}) would be used; otherwise, the sequence would be chosen automatically.
 #' @param lambda The user-supplied sequence of tuning parameters (\eqn{\lambda}).
@@ -116,6 +118,16 @@ rescale.en <- function(select, naive=naive, alpha=alpha, lambda=lambda, all, err
 #' @export
 #' @import glmnet survival stats
 #' @seealso \code{glmnet}
+#' @return A list containing results of the cross-validation fit:
+#'    \item{cvm}{a vector of mean cross-validation errors over lambda values.}
+#'    \item{lambda}{a vector of tuning parameter values.}
+#'    \item{df}{a vector of mean numbers of variables selected over lambda values.}
+#'    \item{min.cvm}{minimum value of mean cross-validation error.}
+#'    \item{lambda.min}{the lambda value corresponding to the minimum (mean) cross-validation error.}
+#'    \item{min.pos}{the position of the minimum (mean) cross-validation error in \code{cvm}.}
+#'    \item{all.beta}{a list of estimated regression parameters over the folds.}
+#'    \item{all.cvm}{a list of vectors of cross-validation errors over the folds.}
+
 
 cv_glmnet <- function(X, Y, foldid, alpha=1, error="cox", offset=rep(0,nrow(X)), setlambda=F, lambda=0, ...) {
   naive <- TRUE
