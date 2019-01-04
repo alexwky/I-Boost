@@ -16,3 +16,6 @@ install_github("alexwky/I-Boost")
 ```
 ?IBoost
 ```
+
+## Contact
+**Kin Yau Wong** <kin-yau.wong@polyu.edu.hk>
